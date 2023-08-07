@@ -54,6 +54,9 @@ GEM
     activerecord (7.0.6)
       activemodel (= 7.0.6)
       activesupport (= 7.0.6)
+    activerecord-postgis-adapter (8.0.2)
+      activerecord (~> 7.0.0)
+      rgeo-activerecord (~> 7.0.0)
     activestorage (7.0.6)
       actionpack (= 7.0.6)
       activejob (= 7.0.6)
@@ -168,6 +171,10 @@ GEM
     reverse_markdown (2.1.1)
       nokogiri
     rexml (3.2.6)
+    rgeo (3.0.0)
+    rgeo-activerecord (7.0.1)
+      activerecord (>= 5.0)
+      rgeo (>= 1.0.0)
     rubocop (1.55.1)
       json (~> 2.3)
       language_server-protocol (>= 3.17.0)
@@ -214,11 +221,14 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  activerecord-postgis-adapter
   bootsnap
   debug
   pg (~> 1.1)
   puma (~> 5.0)
   rails (~> 7.0.6)
+  rgeo
+  rgeo-activerecord
   solargraph
   tzinfo-data
 

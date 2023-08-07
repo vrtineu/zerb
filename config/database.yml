@@ -15,8 +15,14 @@
 # gem "pg"
 #
 default: &default
-  adapter: postgresql
+  adapter: postgis
   encoding: unicode
+  postgis_extension: postgis
+  postgis_schema: public
+  schema_search_path: public,postgis
+  host: localhost
+  username: postgres
+  password: postgres
   # For details on connection pooling, see Rails configuration guide
   # https://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
@@ -84,3 +90,4 @@ production:
   database: zerb_production
   username: zerb
   password: <%= ENV["ZERB_DATABASE_PASSWORD"] %>
+  url: <%= ENV.fetch('DATABASE_URL', '').sub(/^postgres/, "postgis") %>
