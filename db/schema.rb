@@ -10,9 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_08_002141) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_08_003931) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "postgis"
+
+  create_table "partners", force: :cascade do |t|
+    t.string "trading_name"
+    t.string "owner_name"
+    t.string "document"
+    t.geometry "coverage_area", limit: {:srid=>4326, :type=>"multi_polygon"}
+    t.point "address"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
 end
