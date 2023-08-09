@@ -1,15 +1,12 @@
 # frozen_string_literal: true
 
-class Partner < ApplicationRecord
-  attribute :coverage_area, :multi_polygon
-  attribute :address, :point
-  attribute :document, :string
-  attribute :owner_name, :string
-  attribute :trading_name, :string
+class Partner < ActiveRecord::Base # :nodoc:
 
-  validates :coverage_area, presence: true
-  validates :address, presence: true
-  validates :document, presence: true, uniqueness: true
-  validates :owner_name, presence: true
-  validates :trading_name, presence: true, uniqueness: true
+
+  # validates :trading_name, presence: true
+  # validates :owner_name, presence: true
+  # validates :document, presence: true
+
+  # validates :coverage_area, presence: true
+  # validates :address, presence: true
 end
