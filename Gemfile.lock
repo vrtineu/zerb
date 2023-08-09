@@ -92,6 +92,9 @@ GEM
     irb (1.7.4)
       reline (>= 0.3.6)
     jaro_winkler (1.5.6)
+    jbuilder (2.11.5)
+      actionview (>= 5.0.0)
+      activesupport (>= 5.0.0)
     json (2.6.3)
     kramdown (2.4.0)
       rexml
@@ -175,6 +178,8 @@ GEM
     rgeo-activerecord (7.0.1)
       activerecord (>= 5.0)
       rgeo (>= 1.0.0)
+    rgeo-geojson (2.1.1)
+      rgeo (>= 1.0.0)
     rubocop (1.55.1)
       json (~> 2.3)
       language_server-protocol (>= 3.17.0)
@@ -224,11 +229,13 @@ DEPENDENCIES
   activerecord-postgis-adapter
   bootsnap
   debug
+  jbuilder
   pg (~> 1.1)
   puma (~> 5.0)
   rails (~> 7.0.6)
   rgeo
   rgeo-activerecord
+  rgeo-geojson
   solargraph
   tzinfo-data
 
