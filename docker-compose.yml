@@ -8,6 +8,6 @@ services:
       POSTGRES_PASSWORD: postgres
       POSTGRES_USER: postgres
     volumes:
-      - '.docker/db:/var/lib/db/data'
+      - '.docker/db:/var/lib/postgresql'
 volumes:
   db: {}
