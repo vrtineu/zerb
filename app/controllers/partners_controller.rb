@@ -1,9 +1,10 @@
 # frozen_string_literal: true
 
 class PartnersController < ApplicationController
-  def index
-    @partners = Partner.all
-  end
+  before_action :load_all_partners, only: %i[index geojson]
+
+  def index; end
+  def geojson; end
 
   def show
     @partner = Partner.find(params[:id])
@@ -16,7 +17,19 @@ class PartnersController < ApplicationController
     @partner.attributes = partner_params
   end
 
+  def nearest
+    @partner = Partner.find_nearest(params[:lng], params[:lat])
+    puts @partner
+    render :show
+  rescue StandardError
+    render json: { message: 'Partner not found' }, status: :not_found
+  end
+
   private
+
+  def load_all_partners
+    @partners = Partner.all
+  end
 
   def partner_params
     return {} unless params.key?(:partner)
