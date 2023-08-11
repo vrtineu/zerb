@@ -4,9 +4,21 @@ class Partner < ActiveRecord::Base
   validates :trading_name, :owner_name, :document, :coverage_area, :address, presence: true
   validates :document, uniqueness: true
 
-  def self.find_nearest(lat, long)
-    point = RGeo::Geographic.spherical_factory(srid: 4326).point(long, lat)
-    partner = Partner.arel_table
-    Partner.order(partner[:coverage_area].st_distance(point)).order(partner[:address].st_distance(point)).first
+  def self.find_nearest(long,lat)
+    closest_partner = Partner
+      .select(Arel.star)
+      .where(
+        Partner.arel_table[:coverage_area].st_intersects(
+          Arel.spatial("SRID=4326;POINT(#{long} #{lat})")
+        )
+      )
+      .order(
+        Partner.arel_table[:address].st_distance(
+          Arel.spatial("SRID=4326;POINT(#{long} #{lat})")
+        )
+      )
+      .first
+
+    closest_partner
   end
 end
